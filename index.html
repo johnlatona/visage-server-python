@@ -26,9 +26,28 @@
       console.log("RGB", R, G, B);
       var hexHash = {
         "imgPath": window.location.pathname.slice(0, -10) + '/demoImg.jpg',
-        "R": R,
-        "G": G,
-        "B": B
+        "colors": [
+          {
+            "R": R,
+            "G": G,
+            "B": B
+          },
+          {
+            "R": 255,
+            "G": 255,
+            "B": 0
+          },
+          {
+            "R": 255,
+            "G": 0,
+            "B": 90
+          },
+          {
+            "R": 0,
+            "G": 156,
+            "B": 0
+          }
+        ]
       };
       fetch('http://localhost:5000/api', { 
         method: 'POST',
