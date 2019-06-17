@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Netstage</title>
+  <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src='./tone.min.js'></script>
+  <script defer src='./nexusUI.js'></script>
+  <script defer src='./synth.js'></script> -->
+</head>
+<body>
+  <button id="button" data-hex="0,0,255">CLICK ME</button>
+  <script>
+    var button = document.getElementById('button');
+    button.addEventListener('click', function() {
+      var hex = button.getAttribute('data-hex');
+      var hexArr = hex.split(',');
+      var R = hexArr[0];
+      var G = hexArr[1];
+      var B = hexArr[2];
+      console.log("PATHNAME", window.location.pathname.slice(-10) + '/demoImg.jpg');
+      console.log("RGB", R, G, B);
+      var hexHash = {
+        "imgPath": window.location.pathname.slice(0, -10) + '/demoImg.jpg',
+        "R": R,
+        "G": G,
+        "B": B
+      };
+      fetch('http://localhost:5000/api', { 
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(hexHash)
+      })
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(data) {
+        console.log("DATA", data);
+      })
+      .catch(function(err) {
+        console.error("THE CALL FAILED", err);
+      });
+    });
+  </script>
+</body>
+</html>
