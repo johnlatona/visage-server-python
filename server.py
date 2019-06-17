@@ -15,6 +15,7 @@ def hello():
     imgPath = content.get('imgPath')
     if isinstance(content.get('colors'), list):
         colorHexes = content.get('colors')
+        print(colorHexes)
         colorList = []
         for color in colorHexes:
             r = color.get('R')
